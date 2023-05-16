@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+Product
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row mt-5">
+        <div class="col-10 mx-auto col-md-6 my3">
+            <img src="{{product.image1.url}}" class="img-fluid" alt="">
+        </div>
+        <div class="col-10 mx-auto col-md-6 my-3">
+            <div>
+                <h1 class="product_title">{{i.product_name}}</h1>
+                <h5 class="text-info font-italic mb-3">
+                    Price: <span class="mr-1">Rs.</span>{{i.product_price}}
+                </h5>
+                <p class="product_description font-weight-bold">Product Description</p>
+                <p class="text-justify product_text">{{i.product_description}}</p>
+                {% if i.product_stock <= 0 %}
+                <p class="text-justify product_text"><b>Out of Stock</b></p>
+                {% else %}
+                <a href="{% url 'add_cart' product.id %}">
+                    <button type="button" name="button" class="btn btn-warning font-weight-bold">
+                        Add to Cart 
+                    </button> 
+                </a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

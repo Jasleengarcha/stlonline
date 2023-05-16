@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block page_content %}
+
+<div class="col-12 py-4" style="height: 550px; background-image: url('{% static '/images/signin-bg.jpg' %}');">
+    <div class="container h-100">
+        <div class="row h-100">
+            <div class="col-lg-6"></div>
+            <div class="col-lg-4 col-8 bg-light mx-auto mt-3 h-100 text-center p-4" style="box-shadow: 0px 0px 10px;">
+                <h1 class="text-dark">Sign In</h1>
+
+                {% for message in messages %}
+                    <div class="alert alert-{{message.tags}} warning alert-dismissible fade show" role="alert">
+                        <strong>{{message}}</strong>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                {% endfor %}
+                <form action='/signin/' method="post">
+                    {% csrf_token %}
+                    <div class="col-12 pt-3">
+                        <input type="email" class="form-control" name="email" placeholder="Email" required="">
+                    </div>
+                    <div class="col-12 pt-3">
+                        <input type="password" class="form-control" name="pass1" placeholder="Password" required="">
+                        
+                    </div>
+                    <div class="col-12 pt-3 text-start">
+                        <span style="font-size: 12px; color: #878787;">By continuing, you agree to STL ONLINE's <a
+                                href="#">Conditions of Use </a> and <a href="#">Privacy Notice</a>.</span>
+                    </div>
+                    <div class="col-12 pt-3">
+                        <button class="btn text-light form-control" style="background-color: #1aa7ec;"> Sign In
+                        </button>
+                    </div>
+                </form>
+
+                <div class="col-12 pt-3">
+                    <span style="font-size: 12px; color: #878787;">
+                        Don't have account? <a href="/signup/">Create Account</a> | <a href="#"> Forgot Password?</a>
+                    </span>
+                </div>
+
+                <div class="col-12 pt-2">
+                    <h6 style="color: #878787;"> OR </h6>
+                </div>
+
+                <div class="col-12 pt-1">
+                    <a href="#"><img src="{% static 'assets/img/google.png' %}" class="img-fluid" style="height: 50px;"></a>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}
